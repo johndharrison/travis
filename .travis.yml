@@ -12,6 +12,7 @@ cache:
   packages: true
 script: 
   - nohup R --slave --no-restore -e 'shiny::runApp(port = 6012)' &
+  - sleep 10
   - R -f test-basic.R
 addons:
   sauce_connect:
