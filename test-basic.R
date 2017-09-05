@@ -1,6 +1,8 @@
 library(testthat)
 library(RSelenium)
 
+context('Basic Connection')
+
 user <- Sys.getenv("SAUCE_USERNAME") # Your Sauce Labs username
 pass <- Sys.getenv("SAUCE_SECRET_KEY") # Your Sauce Labs access key 
 port <- 4445
