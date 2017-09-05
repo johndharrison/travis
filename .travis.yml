@@ -11,7 +11,8 @@ cache:
     - $TRAVIS_BUILD_DIR/packrat/lib
   packages: true
 script: 
-  - R --slave --no-restore -e 'shiny::runApp(port = 6012)'
+  - R --slave --no-restore -e 'shiny::runApp(port = 6012)' &
+  - R -f test-basic.R
 addons:
   sauce_connect:
     username: $SAUCE_USERNAME
