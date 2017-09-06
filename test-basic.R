@@ -10,13 +10,17 @@ version <- "26"
 platform <- "Linux"
 extraCapabilities <- list(name = "R Shiny Testing", username = user
                           , accessKey = pass, 
-                          tags = list("R", "Travis", "Shiny"))
+                          tags = list("R", "Travis", "Shiny"), 
+                          tunnel-identifier = 
+                            Sys.getenv("TRAVIS_JOB_NUMBER"))
 remDr <- remoteDriver$new(remoteServerAddr = ip, port = port, 
                           browserName = rdBrowser
                           , version = version, platform = platform
                           , extraCapabilities = extraCapabilities)
 
 remDr$open()
+# check tunnel identifier
+Sys.getenv("TRAVIS_JOB_NUMBER")
 appURL <- "http://localhost:3000"
 
 test_that("can connect to google", {  
