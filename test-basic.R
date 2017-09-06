@@ -18,6 +18,13 @@ remDr <- remoteDriver$new(remoteServerAddr = ip, port = port,
 
 remDr$open()
 appURL <- "http://localhost:3000"
+
+test_that("can connect to google", {  
+  remDr$navigate("http://www.google.com/ncr")
+  appTitle <- remDr$getTitle()[[1]]
+  expect_equal(appTitle, "google")  
+})
+
 test_that("can connect to app", {  
   remDr$navigate(appURL)
   appTitle <- remDr$getTitle()[[1]]
