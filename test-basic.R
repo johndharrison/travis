@@ -11,7 +11,7 @@ platform <- "Linux"
 extraCapabilities <- list(name = "R Shiny Testing", username = user
                           , accessKey = pass, 
                           tags = list("R", "Travis", "Shiny"), 
-                          tunnel-identifier = 
+                          'tunnel-identifier' = 
                             Sys.getenv("TRAVIS_JOB_NUMBER"))
 remDr <- remoteDriver$new(remoteServerAddr = ip, port = port, 
                           browserName = rdBrowser
