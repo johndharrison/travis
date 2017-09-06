@@ -26,7 +26,7 @@ appURL <- "http://localhost:3000"
 test_that("can connect to google", {  
   remDr$navigate("http://www.google.com/ncr")
   appTitle <- remDr$getTitle()[[1]]
-  expect_equal(appTitle, "google")  
+  expect_equal(appTitle, "Google")  
 })
 
 test_that("can connect to app", {  
