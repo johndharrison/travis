@@ -1,25 +1,25 @@
 language: r
 before_install:
-  - sudo mkdir -p /usr/lib/R/library
-  - echo 'R_LIBS=/usr/lib/R/library:/usr/lib/R/site-library/' > ~/.Renviron
-  - sudo chmod 2777 /usr/lib/R/library
+- sudo mkdir -p /usr/lib/R/library
+- echo 'R_LIBS=/usr/lib/R/library:/usr/lib/R/site-library/' > ~/.Renviron
+- sudo chmod 2777 /usr/lib/R/library
 install:
-  - R -e "0" --args --bootstrap-packrat
+- R -e "0" --args --bootstrap-packrat
 cache:
   directories:
-    - $TRAVIS_BUILD_DIR/packrat/src
-    - $TRAVIS_BUILD_DIR/packrat/lib
+  - "$TRAVIS_BUILD_DIR/packrat/src"
+  - "$TRAVIS_BUILD_DIR/packrat/lib"
   packages: true
-script: 
-  - nohup R --slave --no-restore -e 'shiny::runApp(port = 6012)' &
-  - R -f test-basic.R
+script:
+- nohup R --slave --no-restore -e 'shiny::runApp(port = 6012)' &
+- R -f test-basic.R
 addons:
   sauce_connect:
-    username: $SAUCE_USERNAME
-    access_key: $SAUCE_SECRET_KEY
+    username: "$SAUCE_USERNAME"
+    access_key: "$SAUCE_SECRET_KEY"
 env:
   matrix:
   - NOT_CRAN=true
   global:
-  - secure: arqF3IZVYAYmUaKym4raoXAwfhl6bibnguF2O4fIxGYBSnEs2KTOKgmHtJtBFoA/W/nm6w2zZ8pxN1exlL6EXwaIenhl2z3d97GcUcRy0ZZzl55jENAzrFLvvYX+ocTAm7EFLLMC/XLIpCbo9KU+dQj/0QJqrFykmUXHam15wF7ln1CnjOxXfJwOZGrPvpiQTX5ltOBR/Ukh+q3MxDzZl/FweidCAm5Zi2vwa6XAK6SQBI3JXa0LKJDphMSZwzjnsSX9GeZj56Ap5R9iuydFwCD3a6kvvr4y96X3NPDMMqnwHycEGRlrZbEKKEJO4B7QMiP0BZOeYj78zM8VdxM6O55Jj2UbDDx2pNB7MVHj1TzaRBhCE8J/K83CMAt5d0f+jPUwwqsYq6GbGW+dPv/9VCqo1XODbWUVcgOxyTQkSdnWjbuu+ksuL9SIFKjj73pRP+wM4wdle4pK5NePLImPWidg+KD5X/o1M0XMw9cGdkhqLtK2kAlo/eeAEOUwbfKbLENRqtyYCpQeGj5Jz69yIvSXopY9ZlX56qGzKbjRLET/cxCVA2jnsrhV0u0OxFXqJ1a3nBAgU8BdObjFzDBvwQsIpiJfnXdHLfzLSUr5OAaryXqTGbHKXbMBakj5NEfWbSsya1GJZ+YxO41j9vGa9nmMod0OUDS7T76ej1WCkR8=
-  - secure: ke60nOp0g1gh9Hu4TNeFYozGPm+UTFy6QHP9DPWmLlC0fJxTmT2/TO57aiSbHzDsP9tJOADX46gcCkFmuEfL9q0Qo6S8wIQcTwc537kVyyQMXzhtRHR2HcP/gz3399PMz8Us7wzRc48SlheRkWTO7V0OqZh1zhCJE8xkueoddO9K19soZ3GKq/KL4a7C5//mTlvH3zmXRw3l5Xv8j4p+lusr1G22Ga6HxoMwQ1SwYUPxIBMvmOtNr4aKWQDPy/BZn4PMzJV7Vpv/yIFwTq1ZiPNGZpMM2Kz5wPmwRSGBIHzV/UGTJkryIbwRigypMOldWbE89OsZddqthJ9GGvJ4oLzSTNKUbLNUg03v3qauMnMtsJPX9s30BOLQ1MYDJQhvJ7HFjz0V/yZxHeEFy0DODBr5tvKchlmU7PzR2CkW+HgKYLGE3T1K87FiUVJFlryqFatAvoRtPvJ6TgMs0ji+usgM4rqzytTlqGX/63+KBVQ9oHU24y7P5RF7rzQ29zRwYEyqdzS9N83tXxp4N2mmNSuv0qH53kr17eXS53XEjNBGWJd/jeOtGwKziqJD2DWFEfSJsogD2Sr85g9n1LgB6G+FZg8U1epcaSq6kPiRUmEnEd92tJC63RyinfxX/JPLXnVLryRDBc4CtFkUQDgo+vcr8nD5L+Oye1a6Z16QMNw=
+  - secure: rvdLIzc3UXtwsl5jGGAv35hXfqLAbYkBRa2wa8LYkEDLpyeJONww3kFFKQKobvg/4Q2N5tZHZgXKWaNLyMP23OsyRCtFiZAftCjOD0N7GnRLHP/Wz1Qa9L2GGPyIZ1kIdebye2uMiuDwhCta7P0ph6s2P9TR72rj1Pu8Cxup6L2TDwu5gvalUmjZs9xOilHRnsIktGkJDe6xvHeYnKNIsBZrOeyxpeKZB5knm/qcnkg3zb3zjSYewpR/MAImZMSUr1EbEaf7faOLTmhLrqikjKFFFItEKTlnk8SVipNBG0csxkDNxyqBab9dQngm5xlu/PqGUVvDtmB3JeYtHxoJiyX98ORiJ/xtMmE8U7JoaG7Fj3jnBXhYJNMCDXjc7/GDxl9kUxOSG+HHaJTktkjM3huyFrTEhWDPFDhdaxJoP0sQNm4SBP0mCIPTkzoDmtyDf/9YiYEv7TTkiSfFcsTbj2FJi0dUTDmS6WrCqhuacn0HQdqx4UY3DOy6vz25PWJV7/NfqY2xbdOedCM1Se/kn/gpuXgskTcXlWZiszUX4Q3dSu09Aktg2sCEHu+6cUtxB/8jscUcF71svXV4haCFruR9SQsZ9aIZPTa4hesktp6Ir3XAZTUZmmZYfgF0R+1x9vIpZhEdg6bKrAJtj4V5+OE7D4Gtb42FJerrWgvtbNY=
+  - secure: 16PJYOxwWS4ghniZCOOGIAvYJie+6DMZH3WWfZ+sRA5Nblshxg6KZC54y+MtJVuaCH3ITnFyScxYog/EQHptF8qO92NWeil6XRAsAPcy8Tap4ERwyqNjbA/wsDxkGfxzn4Kl8uuluq5dMsuEErrD4idgcO7NHxSzIjifNQZUZriAD5omQ09jQ7LtaUH1niXtEJJe+PIzDLwKO0NqEZhXLU5o/bBbiFV66SYRVqHfsj/bs60fnRnEtAWHxcEYksrAr8EHI9GT8lccWTuzbxiLTj409A7AxQAIWLXS59AxJ/VH9nm9MbwanEtJqZAa0NHMS88G0u+MtGgiEW/O/SeuaxzufDjJeJzFB4mpI7Kh2dgUwcTv+QthwZT/EpvibGGKGMIe/Rm9lc2w0xW4/0/sCRzUKQuoPGkJOJBtCHO6pg3otU92LlSxKCWCojeSm3SsCAWrvHw7DaAtu5qm5cSIQP3oII3gNGfSwMWTujktMz2zlQbxZDs0djB1V9uVA8ilUfHUnajQUH25v00tnEtwFQ7pjQSrpuNW0XFZN7H7M/3I9w0Ok7RTTWxDzE4euVOm/wer353nGWtjzgd7QpU90kYM+cv0wy4ldYn34YH3pwNiEfFjAcSt4DJnHnWZM9LjTGXgzn8OA2Bk9EMTjFaw4yZ4DDRuZ6J7DjZEwG4EmuU=
