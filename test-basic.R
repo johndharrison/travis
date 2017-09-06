@@ -5,8 +5,8 @@ user <- Sys.getenv("SAUCE_USERNAME") # Your Sauce Labs username
 pass <- Sys.getenv("SAUCE_SECRET_KEY") # Your Sauce Labs access key 
 port <- 4445
 ip <- paste0(user, ':', pass, "@localhost")
-rdBrowser <- "firefox"
-version <- "26"
+rdBrowser <- "chrome"
+version <- "60"
 platform <- "Linux"
 extraCapabilities <- list(name = "R Shiny Testing", username = user
                           , accessKey = pass, 
