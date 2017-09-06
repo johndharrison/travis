@@ -3,8 +3,8 @@ library(RSelenium)
 
 user <- Sys.getenv("SAUCE_USERNAME") # Your Sauce Labs username
 pass <- Sys.getenv("SAUCE_SECRET_KEY") # Your Sauce Labs access key 
-port <- 80
-ip <- paste0(user, ':', pass, "@ondemand.saucelabs.com")
+port <- 4445
+ip <- paste0(user, ':', pass, "@localhost")
 rdBrowser <- "firefox"
 version <- "26"
 platform <- "Linux"
