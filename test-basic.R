@@ -17,8 +17,7 @@ remDr <- remoteDriver$new(remoteServerAddr = ip, port = port,
                           , extraCapabilities = extraCapabilities)
 
 remDr$open()
-appURL <- "http://localhost:6012"
-readLines(appURL)
+appURL <- "http://localhost:3000"
 test_that("can connect to app", {  
   remDr$navigate(appURL)
   appTitle <- remDr$getTitle()[[1]]
